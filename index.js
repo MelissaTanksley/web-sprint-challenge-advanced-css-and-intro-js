@@ -310,5 +310,5 @@ function lotsOfArt(array){
   } 
 }
 }
-console.log(lotsOfArt(artists));
+console.log(get20s(artists));
   
