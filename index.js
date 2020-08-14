@@ -238,13 +238,14 @@ console.log(getArtistByIndex)
 
 function get20s(array){
   newarr3 = []
-for(let i = 0; i < array.length; i++){
-  newarr3.push(artists[i].years.split('-'));
-if(newarr3.years[1] < 2001 && newarr3.years[0] > 1899){
-  return newarr3;
-}
-console.log(newarr3[1]);
-}
+  for(let i = 0; i < array.length; i++){
+    const years = array[i].years.split(' - ');
+    if(years[1] < 2001 && years[0] > 1899){
+      newarr3.push(array[i].name)
+    }
+  }
+  return newarr3
+
 }
 console.log(get20s(artists));
 
@@ -258,15 +259,15 @@ console.log(get20s(artists));
 * 
 * Note that sucessfully invoking this function multiple times without refreshing your browser will continuously remove artists from the array until there are none left. If you refresh your browser, the data will reset.  
 */
-function removeArtist() {
- return [8]
- console.log (removeArtist)
-}
+// function removeArtist() {
+//  return [8]
+//  console.log (removeArtist)
+// }
 
 //OR?
 
 function removeArtist(array, index) {
-  array.shift();
+  array.slice(index,1)
   return array.length
 }
 console.log(removeArtist(artists, 0));
@@ -284,16 +285,21 @@ bio: Add 1-2 sentences (or use lorem ipsum)
 At the end, this function should return the new array with information added"*/
 
 
-function addArtist(array, id, name, years, genre, nationality, bio){
-  array.push({id, name, years, genre, nationality, bio});
+function addArtist(array, newArtist){
+  array.push(newArtist);
   return array
 }
 
-function addArtist(){
-const bio = ["id", 20, "name", "Melissa Tanksley", "years", 1978-2020, "genre", "web design", "nationality", "American", "bio", 
-"Emergency room nurse turned Web Dev student with Lambda School. Published author. Musician of stringed instruments. "]
-return addArtist;
+const bio = {
+  "id": 20, 
+  "name": "Melissa Tanksley", 
+  "years": "1978 - 2020",
+  "genre": "web design",
+  "nationality": "American", 
+  "bio": "Emergency room nurse turned Web Dev student with Lambda School. Published author. Musician of stringed instruments. "
 }
+
+console.log(addArtist(artists, bio))
 
 /* Task 7: Create a function called lotsOfArt() that takes one argument: 
   (1) artists array 
@@ -304,11 +310,12 @@ For example lotsOfArt(artists); will return ["Amedeo Modigliani", "Rene Magritte
 function lotsOfArt(array){
   let filteredarray = []
   for (let i = 0; i < array.length; i++){
-    filteredarray.push(array[i].name);
-  if (array.pictures > 99){
-    return filteredarray;
-  } 
+    // console.log("test " + i)
+    if (array[i].paintings > 99){
+      filteredarray.push(array[i].name);
+    } 
+  }
+  return filteredarray
 }
-}
-console.log(get20s(artists));
-  
+
+console.log(lotsOfArt(artists))
